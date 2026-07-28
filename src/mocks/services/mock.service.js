@@ -29,7 +29,7 @@ class MockService {
         code: faker.string.alphanumeric({ length: 10 }),
         category: faker.commerce.department(),
         stock: faker.number.int({ min: 0, max: 100 }),
-        thumbnails: [faker.image.urlLoremFlickr({ category: 'product', width: 640, height: 480 })],
+        thumbnails: [faker.image.url()],
       };
     });
 

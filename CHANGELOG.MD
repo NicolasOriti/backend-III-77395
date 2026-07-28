@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.0]() (2026-07-28)
+- Clase 3
+- Agregamos middleware de manejo de errores
+- Agregamos custom error
+
 ## [1.2.1]() (2026-07-21)
 - Clase 2
 - Se completo la primera pre entrega del proyecto y se agregaron los endpoints de productos y usuarios.

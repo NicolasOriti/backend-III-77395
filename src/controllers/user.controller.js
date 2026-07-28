@@ -1,5 +1,5 @@
 import UserService from '../services/user.service.js';
-
+import CustomError from '../errors/custom.error.js';
 class UserController {
   static async getAll(req, res) {
     try {
@@ -11,37 +11,26 @@ class UserController {
     }
   }
 
-  static async getById(req, res) {
+  static async getById(req, res, next) {
     try {
       const { id } = req.params;
       const user = await UserService.getById(id);
-      if (!user) {
-        return res.status(404).json({ statusCode: 404, message: 'User not found' });
-      }
       res.status(200).json(user);
     } catch (error) {
-      if (error.name === 'CastError') {
-        return res.status(400).json({ statusCode: 400, message: 'Invalid user id' });
-      }
-      console.warn('Error getting user');
-      res.status(500).json({ statusCode: 500, message: 'Internal Server Error' });
+      next(error)
     }
   }
 
-  static async create(req, res) {
+  static async create(req, res, next) {
     try {
       const { first_name, last_name, email, password } = req.body;
       if (!first_name || !last_name || !email || !password) {
-        return res.status(400).json({ statusCode: 400, message: 'Missing required fields' });
+        throw new CustomError('VALIDATION_ERROR', 'Missing required fields');
       }
       const user = await UserService.create(req.body);
       res.status(201).json(user);
     } catch (error) {
-      if (error.code === 11000) {
-        return res.status(400).json({ statusCode: 400, message: 'Email already in use' });
-      }
-      console.warn('Error creating user');
-      res.status(500).json({ statusCode: 500, message: 'Internal Server Error' });
+      next(error);
     }
   }
 
