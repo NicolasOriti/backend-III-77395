@@ -6,25 +6,12 @@ const router = express.Router();
 // Querys para traer segun nombre, role
 router.get('/', UserController.getAll);
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  res.send(`User ID: ${id}`);
-});
+router.get('/:id', UserController.getById);
 
-router.post('/', (req, res) => {
-  const { name, email } = req.body;
-  res.send(`User created: ${name}, ${email}`);
-});
+router.post('/', UserController.create);
 
-router.patch('/:id', (req, res) => {
-  const { id } = req.params;
-  const { name, email } = req.body;
-  res.send(`User updated: ID ${id}, Name: ${name}, Email: ${email}`);
-});
+router.patch('/:id', UserController.update);
 
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  res.send(`User deleted: ID ${id}`);
-});
+router.delete('/:id', UserController.remove);
 
 export default router;

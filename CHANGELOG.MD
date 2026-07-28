@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.1]() (2026-07-21)
+- Clase 2
+- Se completo la primera pre entrega del proyecto y se agregaron los endpoints de productos y usuarios.
+
 ## [1.2.0]() (2026-07-21)
 - Clase 2
 - Se agrego mocking de productos y users a traves de faker.js
